@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-2p60fa(^dz_y96w7jf(qt9&5w8e98)c!z@1s*rb_g!e%gbi)78
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["pixie-chucks.onrender.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["acog-api.onrender.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -88,8 +88,7 @@ SIMPLE_JWT = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
