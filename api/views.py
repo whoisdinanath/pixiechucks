@@ -25,7 +25,7 @@ class InputCreate(generics.CreateAPIView):
             if serializer.is_valid():
                 serializer.save()
                 return redirect('output')
-            return self.create(request, *args, **kwargs)
+            return Response(serializer.errors, status=400)
 
 
 class Endpoint(generics.GenericAPIView):
