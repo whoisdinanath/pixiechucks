@@ -16,7 +16,7 @@ class HomeView(APIView):
 
 
 class InputCreate(generics.CreateAPIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     queryset = Input.objects.all()
     serializer_class = InputSerializer
 
