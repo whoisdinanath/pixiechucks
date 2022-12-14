@@ -3,7 +3,8 @@ from . import views
 
 urlpatterns = [
     path('input/', views.InputCreate.as_view(), name='input'),
-    path('output/', views.OutputList.as_view(), name='output')
+    # path('output/', views.OutputList.as_view(), name='output'),
+    # path('endpoint/', views.output, name='endpoint'),
 
 
 ]
