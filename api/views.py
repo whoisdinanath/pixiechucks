@@ -16,7 +16,7 @@ class HomeView(APIView):
 
 
 class InputCreate(generics.CreateAPIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     queryset = Input.objects.all()
     serializer_class = InputSerializer
 
@@ -29,6 +29,7 @@ class InputCreate(generics.CreateAPIView):
                 file = snippets.audio_file
                 text = snippets.text
                 resp = main_func(text, file)
+                snippets.delete()
                 return Response(resp)
             return Response(serializer.errors, status=400)
 
