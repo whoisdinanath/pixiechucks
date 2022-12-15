@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-2p60fa(^dz_y96w7jf(qt9&5w8e98)c!z@1s*rb_g!e%gbi)78
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["api-acog.azurewebsites.net", "127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -119,31 +119,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'acog_api.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-if not DEBUG:
-    DATABASES = {
-        "default": {
-            "ENGINE": "mssql",
-            "NAME": config("DATABASE_NAME"),
-            "USER": config("DATABASE_USER"),
-            "PASSWORD": config("DATABASE_PASSWORD"),
-            "HOST": config("DATABASE_HOST"),
-            "PORT": "1433",
-            "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server",
-                        },
-        },
-    }
-
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -179,9 +154,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 STATIC_URL = 'static/'
 
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -190,3 +162,32 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Database
+# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
+if not DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "mssql",
+            "NAME": config("DATABASE_NAME"),
+            "USER": config("DATABASE_USER"),
+            "PASSWORD": config("DATABASE_PASSWORD"),
+            "HOST": config("DATABASE_HOST"),
+            "PORT": "1433",
+            "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server",
+                        },
+        },
+    }
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    CSRF_TRUSTED_ORIGINS = [
+        'https://*.api-acog.azurewebsites.net/',  'http://*.127.0.0.1']
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
