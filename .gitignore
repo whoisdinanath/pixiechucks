@@ -4,3 +4,5 @@ env
 acog_api/__pycache__
 api/__pycache__
 speech_main/__pycache__
+staticfiles
+db.sqlite3
